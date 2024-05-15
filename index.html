@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Time Screen</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&display=swap" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&family=Poetsen+One&display=swap" rel="stylesheet" />
     <style>
       html,
       body {
@@ -18,8 +20,7 @@
         flex-direction: column;
         background: #0000e6;
         color: white;
-        font-family: sans-serif;
-        font-optical-sizing: auto;
+        font-family: "Poetsen One", sans-serif;
         font-weight: 400;
         font-style: normal;
       }
@@ -41,14 +42,23 @@
       }
       #fullscreen-btn {
         position: fixed;
-        bottom: 10px;
+        right: 15px;
+        bottom: 15px;
+        background: url("fullscreen.png") no-repeat center center;
+        background-color: white;
+        background-size: contain;
+        border: none;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        border-radius: 20%;
       }
     </style>
   </head>
   <body>
     <div class="clock" id="clock"></div>
 
-    <button id="fullscreen-btn">Full Screen</button>
+    <button id="fullscreen-btn"></button>
 
     <script>
       const clockElement = document.getElementById("clock");
@@ -60,13 +70,11 @@
 
       function toggleFullScreen() {
         if (!document.fullscreenElement) {
-          button.textContent = "Exit Full Screen";
           document.documentElement.requestFullscreen().catch((err) => {
             console.log(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
           });
         } else {
           if (document.exitFullscreen) {
-            button.textContent = "Full Screen";
             document.exitFullscreen();
           }
         }
